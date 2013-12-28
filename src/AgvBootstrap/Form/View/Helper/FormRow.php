@@ -28,26 +28,34 @@ class FormRow extends ZendFormRow
      * @var string
      */
     protected $formType = null;
-    
+
     /**
      * Row class
      * @var string 
      */
     protected $rowClass = 'form-group';
     
+    /**
+     * Element class
+     * @var string 
+     */
     protected $elementClass = 'form-control';
 
-    public function setFormType($formType)
-    {
-        $this->formType = $formType;
-        return $this;
-    }
-
+    /**
+     * Invoke helper as functor
+     *
+     * @param  null|ElementInterface $element
+     * @param  null|string           $formType
+     * @param  null|string           $labelPosition
+     * @param  bool                  $renderErrors
+     * @param  string|null           $partial
+     * @return string|FormRow
+     */
     public function __invoke(ElementInterface $element = null, $formType = null,
                              $labelPosition = null, $renderErrors = null,
                              $partial = null)
     {
-        $this->setFormType($formType);
+        $this->formType = $formType;
 
         return parent::__invoke($element, $labelPosition, $renderErrors,
                 $partial);
@@ -102,23 +110,36 @@ class FormRow extends ZendFormRow
         if (isset($label) && '' !== $label) {
             $label = $escapeHtmlHelper($label);
         }
-
-        if ($element instanceof MultiCheckbox || $element instanceof Radio) {
+        
+        if ($element instanceof Radio) {
             $rowClass = $this->rowClass;
+
             $markup = sprintf(
                 '<fieldset><legend>%s</legend>%s</fieldset>', $label,
                 $elementHelper->render($element)
             );
-        } else if ($element instanceof Checkbox) {
+            
+            $markup = $this->getDivRadioCheckboxHorizontal($markup);
+        } elseif ($element instanceof MultiCheckbox) {
+            $rowClass = $this->rowClass;
+            $element->setLabelAttributes(array('class' => 'checkbox'));
+
+            $markup = sprintf(
+                '<fieldset><legend>%s</legend>%s</fieldset>', $label,
+                $elementHelper->render($element)
+            );
+
+            $markup = $this->getDivRadioCheckboxHorizontal($markup);
+        } elseif ($element instanceof Checkbox) {
             $rowClass = 'checkbox';
-            $markup = $labelHelper->openTag()
+
+            $markup = $labelHelper->openTag($this->getLabelAttributesByElement($element))
                 . $elementHelper->render($element)
                 . $label
                 . $labelHelper->closeTag();
-        } 
-        else if ($element instanceof File) {
+        } elseif ($element instanceof \Zend\Form\Element\File) {
             $rowClass = $this->rowClass;
-            $label = $labelHelper->openTag($this->getLabelAttributesByElement($element)) 
+            $label = $labelHelper->openTag($this->getLabelAttributesByElement($element))
                 . $label
                 . $labelHelper->closeTag();
             $markup = $label . $elementHelper->render($element);
@@ -127,8 +148,10 @@ class FormRow extends ZendFormRow
         } else if ($element instanceof Select) {
             $rowClass = $this->rowClass;
 
-            $label = $labelHelper->openTag($this->getLabelAttributesByElement($element)) 
-                . $label 
+            $element->setAttribute('class', $this->elementClass);
+
+            $label = $labelHelper->openTag($this->getLabelAttributesByElement($element))
+                . $label
                 . $labelHelper->closeTag();
             if ($this->formType == AgvBootstrapForm::FORM_TYPE_INLINE) {
                 $label = '';
@@ -145,8 +168,8 @@ class FormRow extends ZendFormRow
             $elementClass .= $this->elementClass;
             $element->setAttribute('class', $elementClass);
 
-            $label = $labelHelper->openTag($this->getLabelAttributesByElement($element)) 
-                . $label 
+            $label = $labelHelper->openTag($this->getLabelAttributesByElement($element))
+                . $label
                 . $labelHelper->closeTag();
             $markup = $label . $elementHelper->render($element);
         }
@@ -161,16 +184,16 @@ class FormRow extends ZendFormRow
             $rowClass .= ' ' . $errorClass;
         }
 
-        //ensure to have space at the end to proper elements spacing in inline variant
-        if ($element instanceof Submit || $element instanceof Button) {
-            return $markup . ' ';
-        }
-
         return sprintf(
             '<div class="%s">%s</div> ', $rowClass, $markup
         );
     }
 
+    /**
+     * Return label element
+     * @param ElementInterface $element
+     * @return string
+     */
     protected function getLabelAttributesByElement($element)
     {
         $labelAttributes = $element->getLabelAttributes();
@@ -191,18 +214,37 @@ class FormRow extends ZendFormRow
 
         if (!isset($labelAttributes['size'])) {
             $size = $element->getOption('size') ? 2 : 0;
+        } else {
+            $size = $labelAttributes['size'] ? 2 : 0;
         }
 
-        $labelAttributes['class'] .= 'control-label';
+        $labelAttributes['class'] .= 'control-label ';
 
         if (!empty($size)) {
             $labelAttributes['class'] .= sprintf(
-                '  col-xs-%s',
-                $size
+                ' col-lg-%s col-md-%s col-sm-%s col-xs-%s ', $size, $size,
+                $size, $size
             );
         }
 
         return $labelAttributes;
+    }
+
+    /**
+     * Return div element for checkbox and radio in horizontal layout
+     * @param string $markup
+     * @return string
+     */
+    protected function getDivRadioCheckboxHorizontal($markup)
+    {
+        if ($this->formType == AgvBootstrapForm::FORM_TYPE_HORIZONTAL) {
+            $class = 'col-sm-offset-2 col-sm-10';
+            $markup = sprintf(
+                '<div class="%s">%s</div> ', $class, $markup
+            );
+        }
+
+        return $markup;
     }
 
 }
