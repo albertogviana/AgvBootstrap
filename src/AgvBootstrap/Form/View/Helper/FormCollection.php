@@ -26,7 +26,7 @@ class FormCollection extends ZendFormCollection
     ";
 
     public function __invoke(ElementInterface $element = null,
-            $allowRemove = false)
+        $allowRemove = false)
     {
         if (!$element) {
             return $this;
@@ -53,11 +53,11 @@ class FormCollection extends ZendFormCollection
 
         foreach ($element->getIterator() as $elementOrFieldset) {
             if ($elementOrFieldset instanceof FieldsetInterface) {
-                if ($fieldsetHelper instanceof $this && $element instanceof Collection) {
+                if ($fieldsetHelper instanceof $this && $elementOrFieldset instanceof CollectionElement) {
                     $markup .= $fieldsetHelper($elementOrFieldset,
-                            $element->allowRemove());
+                        $elementOrFieldset->allowRemove());
                 } else {
-                    $markup .= $fieldsetHelper($elementOrFieldset);
+                    $markup .= $fieldsetHelper($elementOrFieldset, $allowRemove);
                 }
             } elseif ($elementOrFieldset instanceof ElementInterface) {
                 $markup .= $elementHelper($elementOrFieldset);
@@ -70,14 +70,14 @@ class FormCollection extends ZendFormCollection
 
             if ($element->allowAdd()) {
                 $addButton = '<button onclick="'
-                        . str_replace('__placeholder__',
-                                $element->getTemplatePlaceholder(),
-                                $this->addButtonEvent)
-                        . '" type="button" class="close"><i class="glyphicon glyphicon-plus"></i></button>';
+                    . str_replace('__placeholder__',
+                        $element->getTemplatePlaceholder(),
+                        $this->addButtonEvent)
+                    . '" type="button" class="close"><i class="glyphicon glyphicon-plus"></i></button>';
             }
-        } elseif ($element instanceof Fieldset && $allowRemove) {
+        } elseif ($element instanceof FieldsetInterface && $allowRemove) {
             $removeButton = sprintf($this->removeButtonMarkup,
-                    $this->removeButtonEvent, $this->removeButtonContent);
+                $this->removeButtonEvent, $this->removeButtonContent);
         }
 
         $label = $element->getLabel();
@@ -86,24 +86,24 @@ class FormCollection extends ZendFormCollection
 
             if (null !== ($translator = $this->getTranslator())) {
                 $label = $translator->translate(
-                        $label, $this->getTranslatorTextDomain()
+                    $label, $this->getTranslatorTextDomain()
                 );
             }
 
             $label = $escapeHtmlHelper($label);
             $label = sprintf('<legend>%s%s%s</legend>', $label, $removeButton,
-                    $addButton);
+                $addButton);
 
             $wrapper = $label;
         } else {
             $wrapper = sprintf(
-                    '<div class="collection-header">%s%s</div>', $removeButton,
-                    $addButton
+                '<div class="collection-header">%s%s</div>', $removeButton,
+                $addButton
             );
         }
 
         $markup = sprintf(
-                '<fieldset>%s%s</fieldset>', $wrapper, $markup
+            '<fieldset>%s%s</fieldset>', $wrapper, $markup
         );
 
         return $markup;
@@ -119,14 +119,14 @@ class FormCollection extends ZendFormCollection
 
         if ($elementOrFieldset instanceof FieldsetInterface) {
             $templateMarkup .= $this->render($elementOrFieldset,
-                    $collection->allowRemove());
+                $collection->allowRemove());
         } elseif ($elementOrFieldset instanceof ElementInterface) {
             $templateMarkup .= $elementHelper($elementOrFieldset);
         }
 
         return sprintf(
-                '<span data-template="%s"></span>',
-                $escapeHtmlAttribHelper($templateMarkup)
+            '<span data-template="%s"></span>',
+            $escapeHtmlAttribHelper($templateMarkup)
         );
     }
 
