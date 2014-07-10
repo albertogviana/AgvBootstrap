@@ -15,8 +15,7 @@ use Zend\Form\FieldsetInterface;
 class FormCollection extends ZendFormCollection
 {
 
-    protected $removeButtonMarkup = '<button onclick="%s" type="button" class="close">%s</button>';
-    protected $removeButtonContent = '&times;';
+    protected $removeButtonMarkup = '<button onclick="%s" type="button" class="close"><i class="glyphicon glyphicon-trash"></i></button>';
     protected $removeButtonEvent = "this.parentElement.tagName == 'fieldset' ? this.parentElement.remove() : this.parentElement.parentElement.remove()";
     protected $addButtonEvent = "
         var parent = this.parentElement.tagName == 'fieldset' ? this.parentElement : this.parentElement.parentElement;
@@ -39,7 +38,6 @@ class FormCollection extends ZendFormCollection
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
-            // Bail early if renderer is not pluggable
             return '';
         }
 
@@ -77,7 +75,7 @@ class FormCollection extends ZendFormCollection
             }
         } elseif ($element instanceof FieldsetInterface && $allowRemove) {
             $removeButton = sprintf($this->removeButtonMarkup,
-                $this->removeButtonEvent, $this->removeButtonContent);
+                $this->removeButtonEvent);
         }
 
         $label = $element->getLabel();
