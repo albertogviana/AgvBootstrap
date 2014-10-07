@@ -19,6 +19,7 @@ return array(
             'alert' => 'AgvBootstrap\View\Helper\Alert',
             'formSelect' => 'AgvBootstrap\Form\View\Helper\FormSelect',
             'formElementErrors' => 'AgvBootstrap\Form\View\Helper\FormElementErrors',
+            'formDate' => 'AgvBootstrap\Form\View\Helper\FormDate',
         ),
     ),
 );

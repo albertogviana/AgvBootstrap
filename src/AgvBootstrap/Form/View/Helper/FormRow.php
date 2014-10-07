@@ -11,6 +11,7 @@ use Zend\Form\Element\Radio;
 use Zend\Form\Element\Submit;
 use Zend\Form\Element\Hidden;
 use Zend\Form\Element\Select;
+use Zend\Form\Element\Date;
 use Zend\Form\ElementInterface;
 use AgvBootstrap\Form\View\Helper\Form as AgvBootstrapForm;
 
@@ -34,7 +35,7 @@ class FormRow extends ZendFormRow
      * @var string 
      */
     protected $rowClass = 'form-group';
-    
+
     /**
      * Element class
      * @var string 
@@ -110,7 +111,7 @@ class FormRow extends ZendFormRow
         if (isset($label) && '' !== $label) {
             $label = $escapeHtmlHelper($label);
         }
-        
+
         if ($element instanceof Radio) {
             $rowClass = $this->rowClass;
 
@@ -118,7 +119,7 @@ class FormRow extends ZendFormRow
                 '<fieldset><legend>%s</legend>%s</fieldset>', $label,
                 $elementHelper->render($element)
             );
-            
+
             $markup = $this->getDivRadioCheckboxHorizontal($markup);
         } elseif ($element instanceof MultiCheckbox) {
             $rowClass = $this->rowClass;
@@ -158,6 +159,27 @@ class FormRow extends ZendFormRow
             }
 
             $markup = $label . $elementHelper->render($element);
+        } else if ($element instanceof Date) {
+            $rowClass = $this->rowClass;
+
+            $element->setAttribute('class', $this->elementClass);
+
+            $label = $labelHelper->openTag($this->getLabelAttributesByElement($element))
+                . $label
+                . $labelHelper->closeTag();
+
+            $markup = $label . $elementHelper->render($element);
+        } else if ($element instanceof Button) {
+            $rowClass = $this->rowClass;
+
+            $elementClass = $element->getAttribute('class');
+            if (!empty($elementClass)) {
+                $elementClass .= ' ';
+            }
+            $elementClass .= $this->elementClass;
+            $element->setAttribute('class', $elementClass);
+
+            $markup = $elementHelper->render($element);
         } else {
             $rowClass = $this->rowClass;
 
