@@ -51,7 +51,20 @@ class FormInput extends ZendFormInput
         'value' => true,
         'width' => true,
         'gridSize' => true,
+        'help_text' => true,
     );
+    private $helpText;
+
+    public function getHelpText()
+    {
+        return $this->helpText;
+    }
+
+    public function setHelpText($helpText)
+    {
+        $this->helpText = $helpText;
+        return $this;
+    }
 
     /**
      * Render a form <input> element from the provided $element
@@ -74,12 +87,22 @@ class FormInput extends ZendFormInput
         $attributes['name'] = $name;
         $attributes['type'] = $this->getType($element);
         $attributes['value'] = $element->getValue();
-
+        
+        $helpText = $element->getAttribute('help_text');
+        $helpTextTag = '';
+        if (!empty($helpText)) {
+            $helpTextTag = sprintf(
+                '<span class="help-block">%s</span>', $helpText
+            );
+            
+            unset($attributes['help_text']);
+        }
+        
         $size = $element->getAttribute('size');
         if (empty($size)) {
             return sprintf(
-                '<input %s%s', $this->createAttributesString($attributes),
-                $this->getInlineClosingBracket()
+                '<input %s%s%s', $this->createAttributesString($attributes),
+                $this->getInlineClosingBracket(), $helpTextTag
             );
         }
 
@@ -87,9 +110,11 @@ class FormInput extends ZendFormInput
             //col-lg-%s col-md-%s col-sm-%s 
             '<div class="col-xs-%s">
                     <input %s%s
-                </div>', $size, //, $size, $size, $size,
+                </div>
+                %s', $size, //, $size, $size, $size,
             $this->createAttributesString($attributes),
-            $this->getInlineClosingBracket()
+            $this->getInlineClosingBracket(),
+            $helpTextTag
         );
     }
 

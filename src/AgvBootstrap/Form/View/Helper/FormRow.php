@@ -138,7 +138,7 @@ class FormRow extends ZendFormRow
                 . $elementHelper->render($element)
                 . $label
                 . $labelHelper->closeTag();
-        } elseif ($element instanceof \Zend\Form\Element\File) {
+        } elseif ($element instanceof File) {
             $rowClass = $this->rowClass;
             $label = $labelHelper->openTag($this->getLabelAttributesByElement($element))
                 . $label
