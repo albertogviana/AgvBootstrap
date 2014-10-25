@@ -2,7 +2,7 @@
 
 namespace AgvBootstrap\Form\View\Helper;
 
-use Zend\Form\View\Helper\FormElementErrors as ZendFormElementErrors; 
+use Zend\Form\View\Helper\FormElementErrors as ZendFormElementErrors;
 use Zend\Form\ElementInterface;
 
 /**
@@ -20,14 +20,13 @@ class FormElementErrors extends ZendFormElementErrors
     protected $messageSeparatorString = '</li><li>';
     /**@-*/
 
-
     /**
      * Invoke helper as functor
      *
      * Proxies to {@link render()} if an element is passed.
      *
-     * @param  ElementInterface $element
-     * @param  array            $attributes
+     * @param  ElementInterface         $element
+     * @param  array                    $attributes
      * @return string|FormElementErrors
      */
     public function __invoke(ElementInterface $element = null, array $attributes = array())
@@ -42,8 +41,8 @@ class FormElementErrors extends ZendFormElementErrors
     /**
      * Render validation errors for the provided $element
      *
-     * @param  ElementInterface $element
-     * @param  array $attributes
+     * @param  ElementInterface          $element
+     * @param  array                     $attributes
      * @throws Exception\DomainException
      * @return string
      */
@@ -60,9 +59,8 @@ class FormElementErrors extends ZendFormElementErrors
                 (is_object($messages) ? get_class($messages) : gettype($messages))
             ));
         }
-        
+
         $attributes['class'] = 'errors';
-            
 
         // Prepare attributes for opening tag
         $attributes = array_merge($this->attributes, $attributes);

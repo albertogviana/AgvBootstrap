@@ -9,11 +9,11 @@ use Zend\Form\Exception;
 class FormDate extends ZendFormDate
 {
     const BOOTSTRAP_COLUMN = 2;
-    
+
     /**
      * Render a form <input> element from the provided $element
      *
-     * @param  ElementInterface $element
+     * @param  ElementInterface          $element
      * @throws Exception\DomainException
      * @return string
      */
@@ -34,7 +34,7 @@ class FormDate extends ZendFormDate
         $attributes['id'] = str_replace(']', '', (str_replace('[', '-',$attributes['id'])));
 
         return sprintf(
-            //col-lg-%s col-md-%s col-sm-%s 
+            //col-lg-%s col-md-%s col-sm-%s
             '<div class="col-sm-%s">
                     <input %s%s
                 </div>', self::BOOTSTRAP_COLUMN, //, $size, $size, $size,
@@ -42,7 +42,7 @@ class FormDate extends ZendFormDate
             $this->getInlineClosingBracket()
         );
     }
-    
+
     /**
      * Determine input type to use
      *

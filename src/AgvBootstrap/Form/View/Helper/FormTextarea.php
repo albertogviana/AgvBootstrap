@@ -28,7 +28,7 @@ class FormTextarea extends ZendFormTextarea
     /**
      * Render a form <textarea> element from the provided $element
      *
-     * @param  ElementInterface $element
+     * @param  ElementInterface          $element
      * @throws Exception\DomainException
      * @return string
      */
@@ -55,7 +55,7 @@ class FormTextarea extends ZendFormTextarea
                 $escapeHtml($content)
             );
         }
-        
+
         return sprintf(
             '<div class="col-lg-%s col-md-%s col-sm-%s col-xs-%s">
                     <textarea %s>%s</textarea>

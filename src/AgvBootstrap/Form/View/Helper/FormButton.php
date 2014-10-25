@@ -33,8 +33,8 @@ class FormButton extends ZendFormButton
      * Render a form <button> element from the provided $element,
      * using content from $buttonContent or the element's "label" attribute
      *
-     * @param  ElementInterface $element
-     * @param  null|string $buttonContent
+     * @param  ElementInterface          $element
+     * @param  null|string               $buttonContent
      * @throws Exception\DomainException
      * @return string
      */
@@ -67,7 +67,7 @@ class FormButton extends ZendFormButton
     /**
      * Generate an opening button tag
      *
-     * @param  null|array|ElementInterface $attributesOrElement
+     * @param  null|array|ElementInterface        $attributesOrElement
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      * @return string
@@ -81,6 +81,7 @@ class FormButton extends ZendFormButton
         if (is_array($attributesOrElement)) {
             $attributesOrElement = $this->classTagExists($attributesOrElement);
             $attributes = $this->createAttributesString($attributesOrElement);
+
             return sprintf('<button class="btn btn-default" %s>', $attributes);
         }
 
@@ -114,18 +115,18 @@ class FormButton extends ZendFormButton
             $this->createAttributesString($attributes)
         );
     }
-    
+
     /**
      * Verify if class tag was setted up if not it will set it up
-     * @param array $attributes
+     * @param  array   $attributes
      * @return boolean
      */
     private function classTagExists($attributes)
     {
-        if(!isset($attributes['class'])) {
+        if (!isset($attributes['class'])) {
             $attributes['class'] = self::HTML_CLASS_ATTRIBUTE;
         }
-        
+
         return $attributes;
     }
 

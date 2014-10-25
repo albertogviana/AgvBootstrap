@@ -57,7 +57,7 @@ class Form extends ZendForm
     /**
      * Generate an opening form tag
      *
-     * @param FormInterface $form
+     * @param  FormInterface $form
      * @return string
      */
     public function openTag(FormInterface $form = null)
@@ -77,9 +77,9 @@ class Form extends ZendForm
             }
             $attributes = array_merge($attributes, $formAttributes);
         }
-        
+
         if (!empty($this->type) && !empty($this->validTypes[$this->type])) {
- 
+
             if (isset($attributes['class'])) {
                 $attributes['class'] = $attributes['class'] . ' ';
             }
@@ -99,7 +99,7 @@ class Form extends ZendForm
     public function setType($type)
     {
         $this->type = $type;
-        
+
         return $this;
     }
 

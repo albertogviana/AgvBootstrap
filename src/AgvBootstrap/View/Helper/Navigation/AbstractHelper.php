@@ -13,7 +13,7 @@ abstract class AbstractHelper extends ZendAbstractHelper
      * View helper entry point:
      * Retrieves helper and optionally sets container to operate on
      * @param  \Zend\Navigation\Navigation $container [optional] container to operate on
-     * @return TwbNavbar    fluent interface, returns self
+     * @return TwbNavbar                   fluent interface, returns self
      */
     public function __invoke(Navigation $container = null)
     {
@@ -36,8 +36,8 @@ abstract class AbstractHelper extends ZendAbstractHelper
 
     /**
      * Render the container
-     * @param \Zend\Navigation\Navigation $container
-     * @param array $options
+     * @param  \Zend\Navigation\Navigation $container
+     * @param  array                       $options
      * @return string
      */
     protected function renderContainer(Navigation $container,
@@ -59,8 +59,8 @@ abstract class AbstractHelper extends ZendAbstractHelper
 
     /**
      * Decorate the dropdown link
-     * @param \Zend\Navigation\Navigation $content
-     * @param \Zend\Navigation\Page\AbstractPage $page
+     * @param  \Zend\Navigation\Navigation        $content
+     * @param  \Zend\Navigation\Page\AbstractPage $page
      * @return string
      */
     protected function decorateDropdownLink($content, AbstractPage $page)
@@ -75,24 +75,26 @@ abstract class AbstractHelper extends ZendAbstractHelper
 
     /**
      * Render a menu item
-     * @param \Zend\Navigation\Page\AbstractPage $page
-     * @param boolean $renderInDropdown
+     * @param  \Zend\Navigation\Page\AbstractPage $page
+     * @param  boolean                            $renderInDropdown
      * @return string
      */
     protected function renderItem(AbstractPage $page, $renderInDropdown = false)
     {
         if ($renderInDropdown) {
             $itemHtml = $this->renderDropdownLinks($page);
+
             return $this->decorateDropdownLink($itemHtml, $page);
         }
 
         $itemHtml = $this->renderLink($page);
+
         return $this->decorateLink($itemHtml, $page);
     }
 
     /**
      * Render a link with tag a
-     * @param \Zend\Navigation\Page\AbstractPage $page
+     * @param  \Zend\Navigation\Page\AbstractPage $page
      * @return string
      */
     protected function renderLink(AbstractPage $page)
@@ -102,7 +104,7 @@ abstract class AbstractHelper extends ZendAbstractHelper
 
     /**
      * Render a dropdown
-     * @param \Zend\Navigation\Page\AbstractPage $page
+     * @param  \Zend\Navigation\Page\AbstractPage $page
      * @return string
      */
     protected function renderDropdown(AbstractPage $page)
@@ -140,7 +142,7 @@ abstract class AbstractHelper extends ZendAbstractHelper
 
     /**
      * Render the HTML for a nav-text on right
-     * @param string $text
+     * @param  string $text
      * @return string
      */
     protected function renderNavTextRight($text)
@@ -157,9 +159,9 @@ abstract class AbstractHelper extends ZendAbstractHelper
 
     /**
      * Returns an HTML string containing an 'a' element for the given page
-     * @param \Zend\Navigation\Page\AbstractPage $page
-     * @param bool $renderIcons
-     * @param bool $activeIconInverse
+     * @param  \Zend\Navigation\Page\AbstractPage $page
+     * @param  bool                               $renderIcons
+     * @param  bool                               $activeIconInverse
      * @return string
      */
     public function htmlTagA(AbstractPage $page)
@@ -184,7 +186,7 @@ abstract class AbstractHelper extends ZendAbstractHelper
 
     /**
      * Render the HTML for dropdown links
-     * @param \Zend\Navigation\Page\AbstractPage $page
+     * @param  \Zend\Navigation\Page\AbstractPage $page
      * @return string
      */
     protected function renderDropdownLinks(AbstractPage $page)

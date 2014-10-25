@@ -6,14 +6,13 @@ use Zend\Form\View\Helper\FormSelect as ZendFormSelect;
 use Zend\Form\ElementInterface;
 use Zend\Form\Element\Select as SelectElement;
 use Zend\Form\Exception;
-use Zend\Stdlib\ArrayUtils;
 
 class FormSelect extends ZendFormSelect
 {
     /**
      * Render a form <select> element from the provided $element
      *
-     * @param  ElementInterface $element
+     * @param  ElementInterface                   $element
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      * @return string
@@ -59,11 +58,11 @@ class FormSelect extends ZendFormSelect
                 $this->renderOptions($options, $value)
             );
         }
-       
+
         if (!isset($attributes['class'])) {
             $attributes['class'] = 'form-control';
         }
-        
+
         return sprintf(
             '<div class="col-lg-%s col-md-%s col-sm-%s col-xs-%s">
                 <select %s>%s</select>

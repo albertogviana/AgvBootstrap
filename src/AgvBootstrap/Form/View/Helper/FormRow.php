@@ -8,7 +8,6 @@ use Zend\Form\Element\Checkbox;
 use Zend\Form\Element\File;
 use Zend\Form\Element\MultiCheckbox;
 use Zend\Form\Element\Radio;
-use Zend\Form\Element\Submit;
 use Zend\Form\Element\Hidden;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Date;
@@ -32,13 +31,13 @@ class FormRow extends ZendFormRow
 
     /**
      * Row class
-     * @var string 
+     * @var string
      */
     protected $rowClass = 'form-group';
 
     /**
      * Element class
-     * @var string 
+     * @var string
      */
     protected $elementClass = 'form-control';
 
@@ -65,7 +64,7 @@ class FormRow extends ZendFormRow
     /**
      * Utility form helper that renders a label (if it exists), an element and errors
      *
-     * @param  ElementInterface $element
+     * @param  ElementInterface                     $element
      * @throws \Zend\Form\Exception\DomainException
      * @return string
      */
@@ -144,9 +143,9 @@ class FormRow extends ZendFormRow
                 . $label
                 . $labelHelper->closeTag();
             $markup = $label . $elementHelper->render($element);
-        } else if ($element instanceof Hidden) {
+        } elseif ($element instanceof Hidden) {
             return $elementHelper->render($element);
-        } else if ($element instanceof Select) {
+        } elseif ($element instanceof Select) {
             $rowClass = $this->rowClass;
 
             $element->setAttribute('class', $this->elementClass);
@@ -159,7 +158,7 @@ class FormRow extends ZendFormRow
             }
 
             $markup = $label . $elementHelper->render($element);
-        } else if ($element instanceof Date) {
+        } elseif ($element instanceof Date) {
             $rowClass = $this->rowClass;
 
             $element->setAttribute('class', $this->elementClass);
@@ -169,7 +168,7 @@ class FormRow extends ZendFormRow
                 . $labelHelper->closeTag();
 
             $markup = $label . $elementHelper->render($element);
-        } else if ($element instanceof Button) {
+        } elseif ($element instanceof Button) {
             $rowClass = $this->rowClass;
 
             $elementClass = $element->getAttribute('class');
@@ -213,7 +212,7 @@ class FormRow extends ZendFormRow
 
     /**
      * Return label element
-     * @param ElementInterface $element
+     * @param  ElementInterface $element
      * @return string
      */
     protected function getLabelAttributesByElement($element)
@@ -254,7 +253,7 @@ class FormRow extends ZendFormRow
 
     /**
      * Return div element for checkbox and radio in horizontal layout
-     * @param string $markup
+     * @param  string $markup
      * @return string
      */
     protected function getDivRadioCheckboxHorizontal($markup)

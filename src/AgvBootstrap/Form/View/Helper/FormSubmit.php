@@ -40,7 +40,7 @@ class FormSubmit extends ZendFormSubmit
         $attributes['name'] = $name;
         $attributes['type'] = $this->getType($element);
         $attributes['value'] = $element->getValue();
-        
+
         return sprintf(
                 '<input class="btn btn-primary" %s%s',
                 $this->createAttributesString($attributes),

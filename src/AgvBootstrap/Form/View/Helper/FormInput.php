@@ -63,13 +63,14 @@ class FormInput extends ZendFormInput
     public function setHelpText($helpText)
     {
         $this->helpText = $helpText;
+
         return $this;
     }
 
     /**
      * Render a form <input> element from the provided $element
      *
-     * @param  ElementInterface $element
+     * @param  ElementInterface          $element
      * @throws Exception\DomainException
      * @return string
      */
@@ -87,17 +88,17 @@ class FormInput extends ZendFormInput
         $attributes['name'] = $name;
         $attributes['type'] = $this->getType($element);
         $attributes['value'] = $element->getValue();
-        
+
         $helpText = $element->getAttribute('help_text');
         $helpTextTag = '';
         if (!empty($helpText)) {
             $helpTextTag = sprintf(
                 '<span class="help-block">%s</span>', $helpText
             );
-            
+
             unset($attributes['help_text']);
         }
-        
+
         $size = $element->getAttribute('size');
         if (empty($size)) {
             return sprintf(
@@ -107,7 +108,7 @@ class FormInput extends ZendFormInput
         }
 
         return sprintf(
-            //col-lg-%s col-md-%s col-sm-%s 
+            //col-lg-%s col-md-%s col-sm-%s
             '<div class="col-xs-%s">
                     <input %s%s
                 </div>

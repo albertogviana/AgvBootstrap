@@ -20,8 +20,8 @@ class FormRadio extends ZendFormRadio
      *
      * Proxies to {@link render()}.
      *
-     * @param  ElementInterface|null $element
-     * @param  null|string           $labelPosition
+     * @param  ElementInterface|null    $element
+     * @param  null|string              $labelPosition
      * @return string|FormMultiCheckbox
      */
     public function __invoke(ElementInterface $element = null,
@@ -41,7 +41,7 @@ class FormRadio extends ZendFormRadio
     /**
      * Render a form <input> element from the provided $element
      *
-     * @param  ElementInterface $element
+     * @param  ElementInterface                   $element
      * @throws Exception\InvalidArgumentException
      * @throws Exception\DomainException
      * @return string

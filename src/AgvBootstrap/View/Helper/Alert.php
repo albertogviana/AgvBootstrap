@@ -34,7 +34,7 @@ class Alert extends AbstractHtmlElement
                 }
             }
         }
-        
+
         return $html;
     }
 

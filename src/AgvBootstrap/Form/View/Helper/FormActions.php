@@ -9,7 +9,7 @@ class FormActions extends AbstractHelper
 
     /**
      * Renders the form-actions div tag
-     * @param array $content Either a string or an array of elements
+     * @param  array  $content Either a string or an array of elements
      * @return string
      */
     public function render($content)
@@ -23,13 +23,14 @@ class FormActions extends AbstractHelper
         }
 
         $html .= PHP_EOL . $this->closeTag();
+
         return $html;
     }
 
     /**
      * Returns the form-renderActions open tag
-     * @param null|string $formType
-     * @param array $displayOptions
+     * @param  null|string $formType
+     * @param  array       $displayOptions
      * @return string
      */
     public function openTag()
@@ -39,7 +40,7 @@ class FormActions extends AbstractHelper
 
     /**
      * Returns the control group closing tag
-     * @param null|string $formType
+     * @param  null|string $formType
      * @return string
      */
     public function closeTag()
@@ -50,9 +51,9 @@ class FormActions extends AbstractHelper
     /**
      * Invoke helper as function
      * Proxies to {@link render()}.
-     * @param string|array|null $content Either a string or an array of elements
-     * @param null|string $formType
-     * @param array $displayOptions
+     * @param  string|array|null     $content        Either a string or an array of elements
+     * @param  null|string           $formType
+     * @param  array                 $displayOptions
      * @return string|FormActionsTwb
      */
     public function __invoke($content = array())
@@ -60,6 +61,7 @@ class FormActions extends AbstractHelper
         if (!$content) {
             return $this;
         }
+
         return $this->render($content);
     }
 

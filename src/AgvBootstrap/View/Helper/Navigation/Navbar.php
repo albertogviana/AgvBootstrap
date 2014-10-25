@@ -2,7 +2,6 @@
 
 namespace AgvBootstrap\View\Helper\Navigation;
 
-use AgvBootstrap\View\Helper\Navigation\AbstractNavigationHelper;
 use Zend\Navigation\Page\AbstractPage;
 
 /**
@@ -15,11 +14,11 @@ class Navbar extends AbstractNavigationHelper
 
     /**
      * Render the navbar HTML
-     * @param Zend\Navigation\Navigation|string|null $container
-     * @param boolean $staticTop
-     * @param boolean $fixedTop
-     * @param \Zend\Navigation\Page\AbstractPage $brand
-     * @param string $textRight
+     * @param  Zend\Navigation\Navigation|string|null $container
+     * @param  boolean                                $staticTop
+     * @param  boolean                                $fixedTop
+     * @param  \Zend\Navigation\Page\AbstractPage     $brand
+     * @param  string                                 $textRight
      * @return string
      */
     public function render($container = null, $staticTop = false,
@@ -45,6 +44,7 @@ class Navbar extends AbstractNavigationHelper
         if (is_null($container)) {
             $html .= PHP_EOL . '</div>';
             $html .= PHP_EOL . '</div>';
+
             return $html;
         }
 
@@ -63,7 +63,6 @@ class Navbar extends AbstractNavigationHelper
         }
 
         $html .= PHP_EOL . '</div>';
-
 
         $html .= PHP_EOL . '</div>';
         $html .= PHP_EOL . '</div>';

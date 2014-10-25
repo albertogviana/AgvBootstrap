@@ -2,7 +2,6 @@
 
 namespace AgvBootstrap\View\Helper\Navigation;
 
-use AgvBootstrap\View\Helper\Navigation\AbstractHelper;
 use Zend\Navigation\Page\AbstractPage;
 
 /**
@@ -12,13 +11,13 @@ use Zend\Navigation\Page\AbstractPage;
  */
 abstract class AbstractNavigationHelper extends AbstractHelper
 {
-    
+
     const ALIGN_RIGHT = 'right';
     const ALIGN_LEFT = 'left';
-    
+
     /**
      * Render the brand header
-     * @param Zend\Navigation\Page\AbstractPage $brand
+     * @param  Zend\Navigation\Page\AbstractPage $brand
      * @return string
      */
     protected function renderNavHeader(AbstractPage $brand = null)
@@ -44,8 +43,8 @@ abstract class AbstractNavigationHelper extends AbstractHelper
 
     /**
      * Decorate container
-     * @param string $content
-     * @param array $options
+     * @param  string $content
+     * @param  array  $options
      * @return string
      */
     protected function decorateContainer($content, array $options = array())
@@ -70,13 +69,14 @@ abstract class AbstractNavigationHelper extends AbstractHelper
         $html = "<ul class='{$ulClass}'>";
         $html .= PHP_EOL . $content;
         $html .= PHP_EOL . '</ul>';
+
         return $html;
     }
 
     /**
      * Decorante link
-     * @param string $content
-     * @param \Zend\Navigation\Page\AbstractPage $page
+     * @param  string                             $content
+     * @param  \Zend\Navigation\Page\AbstractPage $page
      * @return string
      */
     protected function decorateLink($content, AbstractPage $page)
@@ -86,8 +86,8 @@ abstract class AbstractNavigationHelper extends AbstractHelper
 
     /**
      * Decorate dropdown
-     * @param string $content
-     * @param \Zend\Navigation\Page\AbstractPage $page
+     * @param  string                             $content
+     * @param  \Zend\Navigation\Page\AbstractPage $page
      * @return string
      */
     protected function decorateDropdown($content, AbstractPage $page)
@@ -100,6 +100,7 @@ abstract class AbstractNavigationHelper extends AbstractHelper
         $html = PHP_EOL . '<li ' . $this->htmlAttribs($attribs) . ' >'
             . PHP_EOL . $content
             . PHP_EOL . '</li>';
+
         return $html;
     }
 
