@@ -11,7 +11,6 @@ use Zend\Navigation\Page\AbstractPage;
  */
 class Navbar extends AbstractNavigationHelper
 {
-
     /**
      * Render the navbar HTML
      * @param  Zend\Navigation\Navigation|string|null $container
@@ -69,5 +68,4 @@ class Navbar extends AbstractNavigationHelper
 
         return $html;
     }
-
 }

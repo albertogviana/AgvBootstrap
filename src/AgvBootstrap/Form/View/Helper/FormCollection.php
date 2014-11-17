@@ -14,7 +14,6 @@ use Zend\Form\FieldsetInterface;
  */
 class FormCollection extends ZendFormCollection
 {
-
     protected $removeButtonMarkup = '<button onclick="%s" type="button" class="close"><i class="glyphicon glyphicon-trash"></i></button>';
     protected $removeButtonEvent = "this.parentElement.tagName == 'fieldset' ? this.parentElement.remove() : this.parentElement.parentElement.remove()";
     protected $addButtonEvent = "
@@ -81,7 +80,6 @@ class FormCollection extends ZendFormCollection
         $label = $element->getLabel();
 
         if (!empty($label)) {
-
             if (null !== ($translator = $this->getTranslator())) {
                 $label = $translator->translate(
                     $label, $this->getTranslatorTextDomain()
@@ -135,5 +133,4 @@ class FormCollection extends ZendFormCollection
     {
         return parent::getElementHelper();
     }
-
 }

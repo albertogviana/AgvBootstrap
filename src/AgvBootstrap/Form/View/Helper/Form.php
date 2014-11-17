@@ -66,7 +66,7 @@ class Form extends ZendForm
             'action' => '',
             'method' => 'get',
             'role' => 'form',
-            'class' => ''
+            'class' => '',
         );
 
         if ($form instanceof FormInterface) {
@@ -79,7 +79,6 @@ class Form extends ZendForm
         }
 
         if (!empty($this->type) && !empty($this->validTypes[$this->type])) {
-
             if (isset($attributes['class'])) {
                 $attributes['class'] = $attributes['class'] . ' ';
             }
@@ -102,5 +101,4 @@ class Form extends ZendForm
 
         return $this;
     }
-
 }

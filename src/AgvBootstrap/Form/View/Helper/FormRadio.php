@@ -14,7 +14,6 @@ use Zend\Form\Exception;
  */
 class FormRadio extends ZendFormRadio
 {
-
     /**
      * Invoke helper as functor
      *
@@ -129,7 +128,7 @@ class FormRadio extends ZendFormRadio
             if (is_scalar($optionSpec)) {
                 $optionSpec = array(
                     'label' => $optionSpec,
-                    'value' => $key
+                    'value' => $key,
                 );
             }
 
@@ -200,5 +199,4 @@ class FormRadio extends ZendFormRadio
 
         return implode($this->getSeparator(), $combinedMarkup);
     }
-
 }

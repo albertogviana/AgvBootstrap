@@ -11,7 +11,6 @@ use Zend\View\Helper\AbstractHtmlElement;
  */
 class Alert extends AbstractHtmlElement
 {
-
     private $class = array(
         'error' => 'danger',
         'info' => 'info',
@@ -42,5 +41,4 @@ class Alert extends AbstractHtmlElement
     {
         return $this->class[$namespace];
     }
-
 }

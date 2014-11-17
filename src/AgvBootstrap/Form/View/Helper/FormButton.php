@@ -129,5 +129,4 @@ class FormButton extends ZendFormButton
 
         return $attributes;
     }
-
 }

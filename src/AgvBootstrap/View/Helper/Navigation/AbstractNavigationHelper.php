@@ -11,7 +11,6 @@ use Zend\Navigation\Page\AbstractPage;
  */
 abstract class AbstractNavigationHelper extends AbstractHelper
 {
-
     const ALIGN_RIGHT = 'right';
     const ALIGN_LEFT = 'left';
 
@@ -103,5 +102,4 @@ abstract class AbstractNavigationHelper extends AbstractHelper
 
         return $html;
     }
-
 }

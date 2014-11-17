@@ -16,7 +16,6 @@ use AgvBootstrap\Form\View\Helper\Form as AgvBootstrapForm;
 
 class FormRow extends ZendFormRow
 {
-
     /**
      * The class that is added to element that have errors
      * @var string
@@ -267,5 +266,4 @@ class FormRow extends ZendFormRow
 
         return $markup;
     }
-
 }

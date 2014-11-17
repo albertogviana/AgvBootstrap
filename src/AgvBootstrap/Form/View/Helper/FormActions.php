@@ -6,7 +6,6 @@ use Zend\Form\View\Helper\AbstractHelper;
 
 class FormActions extends AbstractHelper
 {
-
     /**
      * Renders the form-actions div tag
      * @param  array  $content Either a string or an array of elements
@@ -64,5 +63,4 @@ class FormActions extends AbstractHelper
 
         return $this->render($content);
     }
-
 }

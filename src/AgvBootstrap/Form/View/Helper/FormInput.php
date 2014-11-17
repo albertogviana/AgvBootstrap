@@ -13,7 +13,6 @@ use Zend\Form\Exception;
  */
 class FormInput extends ZendFormInput
 {
-
     /**
      * Attributes valid for the input tag
      *
@@ -118,5 +117,4 @@ class FormInput extends ZendFormInput
             $helpTextTag
         );
     }
-
 }

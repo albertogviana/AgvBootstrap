@@ -8,7 +8,6 @@ use Zend\Form\Exception;
 
 class FormSubmit extends ZendFormSubmit
 {
-
     /**
      * Invoke helper as functor
      *
@@ -47,5 +46,4 @@ class FormSubmit extends ZendFormSubmit
                 $this->getInlineClosingBracket()
         );
     }
-
 }

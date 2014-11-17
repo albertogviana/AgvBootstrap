@@ -8,7 +8,6 @@ use Zend\Navigation\Page\AbstractPage;
 
 abstract class AbstractHelper extends ZendAbstractHelper
 {
-
     /**
      * View helper entry point:
      * Retrieves helper and optionally sets container to operate on
@@ -176,7 +175,7 @@ abstract class AbstractHelper extends ZendAbstractHelper
             'title' => $title,
             'class' => $page->getClass(),
             'href' => $page->getHref(),
-            'target' => $page->getTarget()
+            'target' => $page->getTarget(),
         );
 
         return sprintf(
@@ -214,5 +213,4 @@ abstract class AbstractHelper extends ZendAbstractHelper
             $text = implode(' ', $words);
         }
     }
-
 }
