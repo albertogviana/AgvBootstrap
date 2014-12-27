@@ -8,7 +8,7 @@ use Zend\Form\Exception;
 
 class FormDate extends ZendFormDate
 {
-    const BOOTSTRAP_COLUMN = 2;
+    const BOOTSTRAP_COLUMN = 4;
 
     /**
      * Render a form <input> element from the provided $element
@@ -35,7 +35,7 @@ class FormDate extends ZendFormDate
 
         return sprintf(
             //col-lg-%s col-md-%s col-sm-%s
-            '<div class="col-sm-%s">
+            '<div class="col-xs-%s">
                     <input %s%s
                 </div>', self::BOOTSTRAP_COLUMN, //, $size, $size, $size,
             $this->createAttributesString($attributes),
