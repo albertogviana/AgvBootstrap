@@ -25,6 +25,12 @@ class FormSubmit extends ZendFormSubmit
         return $this->render($element);
     }
 
+    /**
+     * Render
+     * @param ElementInterface $element
+     * @return string
+     * @throws Exception\DomainException
+     */
     public function render(ElementInterface $element)
     {
         $name = $element->getName();
@@ -40,8 +46,14 @@ class FormSubmit extends ZendFormSubmit
         $attributes['type'] = $this->getType($element);
         $attributes['value'] = $element->getValue();
 
+        $cssClass = '';
+        if(isset($attributes['class'])) {
+            $cssClass = $attributes['class'];
+        }
+
         return sprintf(
-                '<input class="btn btn-primary" %s%s',
+                '<input class="btn btn-primary %s" %s%s',
+                $cssClass,
                 $this->createAttributesString($attributes),
                 $this->getInlineClosingBracket()
         );

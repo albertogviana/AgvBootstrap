@@ -9,6 +9,7 @@ use Zend\Form\Exception;
 class FormButton extends ZendFormButton
 {
     const HTML_CLASS_ATTRIBUTE = 'btn btn-default';
+    const HTML_SUBMIT_CLASS_ATTRIBUTE = ' btn btn-primary ';
 
     /**
      * Invoke helper as functor
@@ -61,7 +62,13 @@ class FormButton extends ZendFormButton
 
         $escape = $this->getEscapeHtmlHelper();
 
-        return $openTag . $escape($buttonContent) . $this->closeTag();
+        $attributes = $element->getAttributes();
+        $icon = '';
+        if(isset($attributes['icon'])) {
+            $icon = sprintf('<i class="%s"></i> ', $attributes['icon']);
+        }
+
+        return $openTag . $icon . $escape($buttonContent) . $this->closeTag();
     }
 
     /**
@@ -82,7 +89,11 @@ class FormButton extends ZendFormButton
             $attributesOrElement = $this->classTagExists($attributesOrElement);
             $attributes = $this->createAttributesString($attributesOrElement);
 
-            return sprintf('<button class="btn btn-default" %s>', $attributes);
+            return sprintf(
+                '<button class="%s" %s>',
+                self::HTML_CLASS_ATTRIBUTE,
+                $attributes
+            );
         }
 
         if (!$attributesOrElement instanceof ElementInterface) {
@@ -125,6 +136,10 @@ class FormButton extends ZendFormButton
     {
         if (!isset($attributes['class'])) {
             $attributes['class'] = self::HTML_CLASS_ATTRIBUTE;
+        }
+
+        if($attributes['type'] == 'submit' && isset($attributes['class'])) {
+            $attributes['class'] = self::HTML_SUBMIT_CLASS_ATTRIBUTE . $attributes['class'] ;
         }
 
         return $attributes;
