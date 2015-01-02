@@ -11,6 +11,7 @@ use Zend\Form\Element\Radio;
 use Zend\Form\Element\Hidden;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Date;
+use Zend\Form\Element\Submit;
 use Zend\Form\ElementInterface;
 use AgvBootstrap\Form\View\Helper\Form as AgvBootstrapForm;
 
@@ -177,6 +178,20 @@ class FormRow extends ZendFormRow
             $elementClass .= $this->elementClass;
             $element->setAttribute('class', $elementClass);
 
+            $markup = $elementHelper->render($element);
+        } elseif ($element instanceof Submit) {
+            $rowClass = $this->rowClass;
+
+            $elementClass = $element->getAttribute('class');
+            if (!empty($elementClass)) {
+                $elementClass .= ' ';
+            }
+
+            if($this->formType == AgvBootstrapForm::FORM_TYPE_HORIZONTAL) {
+                $elementClass .= $this->elementClass;
+                $element->setAttribute('class', $elementClass);
+            }
+            
             $markup = $elementHelper->render($element);
         } else {
             $rowClass = $this->rowClass;
