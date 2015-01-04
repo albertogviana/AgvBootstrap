@@ -121,8 +121,16 @@ class FormRow extends ZendFormRow
 
             $markup = $this->getDivRadioCheckboxHorizontal($markup);
         } elseif ($element instanceof MultiCheckbox) {
+
+            $labelAttributes = $element->getLabelAttributes();
+
+            $labelAttributesClass = '';
+            if(isset($labelAttributes['class'])) {
+                $labelAttributesClass = $labelAttributes['class'];
+            }
+
             $rowClass = $this->rowClass;
-            $element->setLabelAttributes(array('class' => 'checkbox'));
+            $element->setLabelAttributes(array('class' => 'checkbox ' . $labelAttributesClass));
 
             $markup = sprintf(
                 '<fieldset><legend>%s</legend>%s</fieldset>', $label,
